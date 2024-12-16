@@ -1,0 +1,263 @@
+package eredua;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import eredua.domeinua.*;
+import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
+import eredua.configuration.UtilDate;
+
+import java.util.*;
+
+public class HibernateDataAccess {
+
+	public HibernateDataAccess() {
+		initializeDB();
+	}
+
+	public void initializeDB() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			DriverHibernate driver1 = new DriverHibernate("Urtzi", "123");
+			DriverHibernate driver2 = new DriverHibernate("Zuri", "456");
+			session.saveOrUpdate(driver1);
+			session.saveOrUpdate(driver2);
+
+			TravelerHibernate traveler1 = new TravelerHibernate("Unax", "789");
+			TravelerHibernate traveler2 = new TravelerHibernate("Luken", "abc");
+			session.saveOrUpdate(traveler1);
+			session.saveOrUpdate(traveler2);
+
+			Calendar cal = Calendar.getInstance();
+			cal.set(2024, Calendar.MAY, 20);
+			Date date1 = UtilDate.trim(cal.getTime());
+
+			cal.set(2024, Calendar.MAY, 30);
+			Date date2 = UtilDate.trim(cal.getTime());
+
+			cal.set(2024, Calendar.MAY, 10);
+			Date date3 = UtilDate.trim(cal.getTime());
+
+			cal.set(2024, Calendar.MAY, 20);
+			Date date4 = UtilDate.trim(cal.getTime());
+
+			driver1.addRide("Donostia", "Madrid", date2, 5, 20); // ride1
+			driver1.addRide("Irun", "Donostia", date2, 5, 2); // ride2
+			driver1.addRide("Madrid", "Donostia", date3, 5, 5); // ride3
+			driver1.addRide("Barcelona", "Madrid", date4, 0, 10); // ride4
+			driver2.addRide("Donostia", "Hondarribi", date1, 5, 3); // ride5
+
+			session.getTransaction().commit();
+			System.out.println("Db initialized");
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public List<String> getDepartCities() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			return session.createQuery("SELECT DISTINCT r.to FROM RideHibernate r ORDER BY r.to").list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public List<String> getArrivalCities(String from) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			return session.createQuery("SELECT DISTINCT r.to FROM RideHibernate r WHERE r.from=:from ORDER BY r.to")
+					.setParameter("from", from).list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public RideHibernate createRide(String from, String to, Date date, int nPlaces, float price, String driverName)
+			throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		System.out.println(
+				">> DataAccess: createRide=> from= " + from + " to= " + to + " driver=" + driverName + " date " + date);
+
+		try {
+			if (new Date().compareTo(date) > 0) {
+				throw new RideMustBeLaterThanTodayException("The ride date must be later than today.");
+			}
+
+			DriverHibernate driver = (DriverHibernate) session
+					.createQuery("FROM UserHibernate d WHERE d.username = :username")
+					.setParameter("username", driverName).list().get(0);
+			if (driver != null && driver.doesRideExists(from, to, date)) {
+				transaction.commit();
+				throw new RideAlreadyExistException("Ride already exists.");
+			}
+
+			RideHibernate ride = driver.addRide(from, to, date, nPlaces, price);
+			session.persist(ride);
+			transaction.commit();
+			return ride;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public List<RideHibernate> getRides(String from, String to, Date date) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			return session
+					.createQuery(
+							"FROM RideHibernate r WHERE r.from=:from AND r.to=:to AND r.date=:date AND r.active=true")
+					.setParameter("from", from).setParameter("to", to).setParameter("date", date).list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public List<RideHibernate> getRidesByDate(Date date) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			return session.createQuery("FROM RideHibernate r WHERE r.date=:date AND r.active = true")
+					.setParameter("date", date).list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public List<Date> getThisMonthDatesWithRides(String from, String to, Date date) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			Date firstDayMonthDate = UtilDate.firstDayMonth(date);
+			Date lastDayMonthDate = UtilDate.lastDayMonth(date);
+
+			return session.createQuery(
+					"SELECT DISTINCT r.date FROM RideHibernate r WHERE r.from = :from AND r.to = :to AND r.date BETWEEN :startDate AND :endDate AND r.active = true")
+					.setParameter("from", from).setParameter("to", to).setParameter("startDate", firstDayMonthDate)
+					.setParameter("endDate", lastDayMonthDate).list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public void open() {
+		System.out.println("DataAccess opened");
+	}
+
+	public void close() {
+		HibernateUtil.getSessionFactory().close();
+		System.out.println("DataAccess closed");
+	}
+
+	public UserHibernate getUser(String erab) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			return (UserHibernate) session.createQuery("FROM UserHibernate u WHERE u.username = :username")
+					.setParameter("username", erab).list();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public boolean isRegistered(String erab, String passwd) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			List travelerCount = session.createQuery(
+					"SELECT COUNT(t) FROM TravelerHibernate t WHERE t.username = :username AND t.passwd = :passwd")
+					.setParameter("username", erab).setParameter("passwd", passwd).list();
+
+			List driverCount = session.createQuery(
+					"SELECT COUNT(d) FROM DriverHibernate d WHERE d.username = :username AND d.passwd = :passwd")
+					.setParameter("username", erab).setParameter("passwd", passwd).list();
+
+			return travelerCount > 0 || driverCount > 0;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+
+	public String getMotabyUsername(String erab) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		List driverResultList = session.createQuery("SELECT d.mota FROM DriverHibernate d WHERE d.username = :username")
+				.setParameter("username", erab).list();
+
+		List travelerResultList = session
+				.createQuery("SELECT t.mota FROM TravelerHibernate t WHERE t.username = :username")
+				.setParameter("username", erab).list();
+
+		session.getTransaction().commit();
+
+		if (!driverResultList.isEmpty()) {
+			return (String) driverResultList.get(0);
+		} else if (!travelerResultList.isEmpty()) {
+			return (String) travelerResultList.get(0);
+		} else {
+			return "Admin";
+		}
+	}
+
+	public boolean addDriver(String username, String password) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			List drivers = session.createQuery("FROM DriverHibernate d WHERE d.username = :username")
+					.setParameter("username", username).list();
+			if (!drivers.isEmpty()) {
+				return false;
+			}
+			DriverHibernate driver = new DriverHibernate(username, password);
+			session.persist(driver);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean addTraveler(String username, String password) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			List travelers = session.createQuery("FROM TravelerHibernate t WHERE t.username = :username")
+					.setParameter("username", username).list();
+			if (!travelers.isEmpty()) {
+				return false;
+			}
+			TravelerHibernate traveler = new TravelerHibernate(username, password);
+			session.persist(traveler);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+}

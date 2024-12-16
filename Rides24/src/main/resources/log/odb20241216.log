@@ -49,3 +49,20 @@ Type domain.Ride is not enhanced.
 [2024-12-16 12:12:45 #5 type] 
 Type domain.Traveler is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-16 18:09:38 #1 store] 
+Database 'C:\Users\zurib\Desktop\UNIVERSIDAD\TERCERO DE CARRERA\SI2\ProiektuaSI2\Rides24\src\main\resources\rides.temp' is opened by 10504@ZuriBehobide
+
+[2024-12-16 18:09:38 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-12-16 18:09:38 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-16 18:09:38 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-16 18:09:38 #5 type] 
+Type domain.Traveler is not enhanced.
+

@@ -119,7 +119,7 @@ public class HibernateDataAccess {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		List rides = session
+		List<RideHibernate> rides = session
 				.createQuery("FROM RideHibernate r WHERE r.from=:from AND r.to=:to AND r.date=:date AND r.active=true")
 				.setParameter("from", from).setParameter("to", to).setParameter("date", date).list();
 
