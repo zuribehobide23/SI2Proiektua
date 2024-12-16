@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Data Baten Bidaiak</title>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="container">
+				<h1>Data Baten Bidaiak</h1>
+				Traveler:
+				<h:outputText value=" #{loginBean.username}" />
+				<table>
+					<tr>
+						<td><h:outputLabel for="origin" value="Select Origin City:" /></td>
+						<td><h:selectOneMenu id="origin"
+								value="#{queryRidesBean.from}" required="true">
+								<f:selectItem itemLabel="Select Origin" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{queryRidesBean.originCities}" var="city"
+									itemLabel="#{city}" itemValue="#{city}" />
+								<f:ajax listener="#{queryRidesBean.updateDestinationCities}"
+									render="destination rideDate" />
+							</h:selectOneMenu> <h:message id="originMessage" for="origin" style="color: red;" />
+						</td>
+					</tr>
+
+					<tr>
+						<td><h:outputLabel for="destination"
+								value="Select Destination City:" /></td>
+						<td><h:selectOneMenu id="destination"
+								value="#{queryRidesBean.to}" required="true">
+								<f:selectItem itemLabel="Select Destination" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{queryRidesBean.destinationCities}"
+									var="city" itemLabel="#{city}" itemValue="#{city}" />
+								<f:ajax listener="#{queryRidesBean.updateDates}"
+									render="rideDate" />
+							</h:selectOneMenu> <h:message id="destinationMessage" for="destination"
+								style="color:red" /></td>
+					</tr>
+
+					<tr>
+						<td><h:outputLabel for="rideDate" value="Select Ride Date:" /></td>
+						<td><p:calendar id="rideDate" value="#{queryRidesBean.date}"
+								navigator="true" mode="inline" required="true">
+								<f:ajax event="valueChange" update="ridesTable"
+									execute="rideDate" render="rideDateMessage" />
+							</p:calendar> <h:message id="rideDateMessage" for="rideDate" style="color:red" />
+						</td>
+					</tr>
+				</table>
+
+				<h:dataTable value="#{queryRidesBean.foundRides}" var="ride"
+					style="margin-top: 20px;">
+					<h:column>
+						<f:facet name="header">Driver</f:facet>
+						#{ride.driver.username}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Seats</f:facet>
+						#{ride.nPlaces}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Price</f:facet>
+						#{ride.price}
+					</h:column>
+				</h:dataTable>
+
+				<div class="button-container">
+					<h:commandButton value="Find Rides"
+						action="#{queryRidesBean.findRides}" class="button" />
+					<h:commandButton value="Close" action="#{queryRidesBean.close}"
+						immediate="true" class="button" />
+				</div>
+
+				<h:messages style="color:blue" />
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

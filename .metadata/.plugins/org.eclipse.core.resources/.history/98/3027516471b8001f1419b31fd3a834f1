@@ -1,0 +1,50 @@
+package eredua.bean;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+
+import businessLogic.BLFacade;
+import domain.Ride;
+import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
+
+@ManagedBean(name = "finddataBean")
+@SessionScoped
+public class FindDataBean {
+	private List<Ride> foundRides = new ArrayList<>();
+
+	private Date date;
+
+	public FindDataBean() {
+
+	}
+
+	public void bidaiak() {
+		BLFacade facade = FacadeBean.getBusinessLogic();
+		foundRides = facade.getRides(from, to, date);
+	}
+
+	public String close() {
+		return "Bidaiak";
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public void onDateSelect(SelectEvent event) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data aukeratua: " + event.getObject()));
+	}
+}

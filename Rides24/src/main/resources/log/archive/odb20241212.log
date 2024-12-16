@@ -1,0 +1,17 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-12 11:27:27 #1 store] 
+Database 'C:\Users\zurib\Desktop\UNIVERSIDAD\TERCERO DE CARRERA\SI2\ProiektuaSI2\Rides24\src\main\resources\rides.temp' is opened by 16388@ZuriBehobide
+
+[2024-12-12 11:27:27 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-12-12 11:27:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-12 11:27:27 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-12 11:27:27 #5 type] 
+Type domain.Traveler is not enhanced.
+

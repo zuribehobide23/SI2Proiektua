@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Data Baten Bidaiak</title>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="container">
+				<h1>Data Baten Bidaiak</h1>
+				<table>
+					<tr>
+						<td><h:outputLabel for="rideDate" value="Select Ride Date:" /></td>
+						<td><p:calendar id="rideDate" value="#{databidaiakBean.date}"
+								navigator="true" mode="inline" required="true">
+								<f:ajax execute="rideDate" render="selectedDate rideDateMessage" />
+							</p:calendar> <h:message id="rideDateMessage" for="rideDate" style="color:red" />
+						</td>
+					</tr>
+				</table>
+
+				<p>
+					Selected Date:
+					 <h:outputText id="selectedDate" value="#{databidaiakBean.date}">
+                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                    </h:outputText>
+				</p>
+
+				<div class="button-container">
+					<h:commandButton value="BIDAI GUZTIAK ERAKUTSI"
+						action="#{databidaiakBean.bidaiak}" class="button" />
+					<h:commandButton value="Close" action="#{databidaiakBean.close}"
+						immediate="true" class="button" />
+				</div>
+
+				<h:messages style="color:blue" />
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Bidaiak</title>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="container">
+				<h1>Bidaiak</h1>
+				<h:dataTable value="#{finddataBean.foundRides}" var="ride"
+					style="margin-top: 20px;">
+					<h:column>
+						<f:facet name="header">Driver</f:facet>
+						#{ride.driver.username}
+					</h:column>
+					<h:column>
+						<f:facet name="header">From</f:facet>
+						#{ride.from}
+					</h:column>
+					<h:column>
+						<f:facet name="header">To</f:facet>
+						#{ride.to}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Price</f:facet>
+						#{ride.price}
+					</h:column>
+				</h:dataTable>
+
+				<div class="button-container">
+					<h:commandButton value="Close" action="#{databidaiakBean.close}"
+						immediate="true" class="button" />
+				</div>
+
+				<h:messages style="color:blue" />
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

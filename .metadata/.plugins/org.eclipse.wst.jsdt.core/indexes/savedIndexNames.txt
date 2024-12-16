@@ -1,0 +1,5 @@
+INDEX VERSION 1.4+C:\Users\zurib\Desktop\UNIVERSIDAD\TERCERO DE CARRERA\SI2\ProiektuaSI2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1945654770.index
+1706206432.index
+1706206432.index
+3009086310.index

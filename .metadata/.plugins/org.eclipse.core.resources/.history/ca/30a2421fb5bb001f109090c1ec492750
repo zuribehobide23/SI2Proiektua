@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Create Ride</title>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<div class="container">
+				<h1>Create Ride</h1>
+				<p>
+					Driver:
+					<h:outputText value=" #{loginBeanHibernate.username}" />
+				</p>
+				<table>
+					<tr>
+						<td><h:outputLabel for="origin" value="Leaving From:" /></td>
+						<td><h:inputText id="origin" value="#{createRideBean.from}"
+								required="true">
+								<f:validateLength minimum="1" />
+								<f:ajax execute="origin" render="originMessage" />
+							</h:inputText> <h:message id="originMessage" for="origin" style="color: red;" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel for="destination" value="Going To:" /></td>
+						<td><h:inputText id="destination"
+								value="#{createRideBean.to}" required="true">
+								<f:validateLength minimum="1" />
+								<f:ajax execute="destination" render="destinationMessage" />
+							</h:inputText> <h:message id="destinationMessage" for="destination"
+								style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel for="rideDate" value="Ride Date:" /></td>
+						<td><p:calendar id="rideDate" value="#{createRideBean.date}"
+								navigator="true" mode="inline" required="true">
+								<f:ajax event="dateSelect"
+									listener="#{createRideBean.onDateSelect}" execute="rideDate"
+									render="rideDateMessage" />
+							</p:calendar> <h:message id="rideDateMessage" for="rideDate" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel for="seats" value="Number of Seats:" /></td>
+						<td><h:inputText id="seats" value="#{createRideBean.nPlaces}">
+								<f:validateLongRange minimum="1" />
+								<f:ajax execute="seats" render="seatsMessage" />
+							</h:inputText> <h:message id="seatsMessage" for="seats" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel for="price" value="Price:" /></td>
+						<td><h:inputText id="price" value="#{createRideBean.price}">
+								<f:validateLongRange minimum="1" />
+								<f:ajax execute="price" render="priceMessage" />
+							</h:inputText> <h:message id="priceMessage" for="price" style="color:red" /></td>
+					</tr>
+				</table>
+				<div class="button-container">
+
+					<h:commandButton value="Create Ride"
+						action="#{createRideBean.createRide}" class="button" />
+					<h:commandButton value="Close" action="#{createRideBean.close}"
+						immediate="true" class="button" />
+				</div>
+				<h:messages style="color:blue" />
+
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.ui.wizards.export.ZipFile"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.jdt.ui.Java"/>
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+		<section name="ImportExportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="386"/>
+			<item key="DIALOG_Y_ORIGIN" value="11"/>
+			<item key="DIALOG_WIDTH" value="525"/>
+			<item key="DIALOG_HEIGHT" value="550"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.hibernate.eclipse.console.wizards.NewConfigurationWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="hibernatewizards"/>
+		</list>
+		<section name="NewWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="386"/>
+			<item key="DIALOG_Y_ORIGIN" value="42"/>
+			<item key="DIALOG_WIDTH" value="525"/>
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="ZipFileExportWizard">
+		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
+		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
+		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\zurib\Desktop\SI2.zip"/>
+			<item value="C:\Users\zurib\Downloads\gptbien.zip"/>
+			<item value="C:\Users\zurib\Downloads\gpt.zip"/>
+			<item value="C:\Users\zurib\Desktop\UNIVERSIDAD\TERCERO DE CARRERA\SI2\PROIEKTUABUKATUTA.zip"/>
+			<item value="C:\Users\zurib\Desktop\UNIVERSIDAD\TERCERO DE CARRERA\SI2\JSFPROIEKTUA.zip"/>
+			<item value="C:\Users\zurib\Downloads\ayudame.zip"/>
+			<item value="C:\Users\zurib\Downloads\ayuda.zip"/>
+			<item value="C:\Users\zurib\Downloads\rides.zip"/>
+			<item value="C:\Users\zurib\Downloads\Terminado.zip"/>
+			<item value="C:\Users\zurib\Downloads\casi.zip"/>
+			<item value="C:\Users\zurib\Downloads\c.zip"/>
+			<item value="C:\Users\zurib\Downloads\copiadeseguridad.zip"/>
+			<item value="C:\Users\zurib\Downloads\chati.zip"/>
+			<item value="C:\Users\zurib\Downloads\mandar.zip"/>
+			<item value="C:\Users\zurib\Downloads\pruebajsf.zip"/>
+		</list>
+		<section name="ZipFileExportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="386"/>
+			<item key="DIALOG_Y_ORIGIN" value="11"/>
+			<item key="DIALOG_WIDTH" value="995"/>
+			<item key="DIALOG_HEIGHT" value="806"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="WorkbenchPreferenceDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1068"/>
+		<item key="DIALOG_Y_ORIGIN" value="361"/>
+		<item key="DIALOG_WIDTH" value="766"/>
+		<item key="DIALOG_HEIGHT" value="670"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+	</section>
+	<section name="EditorSelectionDialog">
+	</section>
+	<section name="ZipFileImportWizard">
+		<section name="ZipFileImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="386"/>
+			<item key="DIALOG_Y_ORIGIN" value="11"/>
+			<item key="DIALOG_WIDTH" value="995"/>
+			<item key="DIALOG_HEIGHT" value="688"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+		</section>
+	</section>
+</section>

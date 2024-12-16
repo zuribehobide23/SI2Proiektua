@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17321048926500" configfile="/RidesJSF/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Main.xhtml" x="122" y="562" id="pf17321811734800" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17335004608330 pf17335004608331 pf17339972944210" path="/Main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="338" y="562" id="pf17335004608332" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17335004608333 pf173350215199411" inlinks="pf17335004608330" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" x="338" y="178" id="pf17335004608335" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf17335004608331" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Traveler.xhtml" x="554" y="370" id="pf17335004608336" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf173350215199412" inlinks="pf17335004608333" path="/Traveler.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Driver.xhtml" x="554" y="754" id="pf173350215199413" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf173350215199414" inlinks="pf173350215199411" path="/Driver.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateRide.xhtml" x="770" y="754" id="pf173350215199415" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf173350215199414" path="/CreateRide.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryRides.xhtml" x="770" y="370" id="pf173350215199416" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf173350215199412" path="/QueryRides.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Bidaiak.xhtml" x="338" y="946" id="pf17339972944211" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17339980133592" inlinks="pf17339972944210" path="/Bidaiak.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="FindData.xhtml" x="546" y="946" id="pf17339980133593" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf17339980133592" path="/FindData.xhtml"/>
+  <links id="pf17335004608330" target="pf17335004608332" source="pf17321811734800" outcome="Login"/>
+  <links id="pf17335004608331" target="pf17335004608335" source="pf17321811734800" outcome="QueryRides"/>
+  <links id="pf17335004608333" target="pf17335004608336" source="pf17335004608332" outcome="Traveler"/>
+  <links id="pf173350215199411" target="pf173350215199413" source="pf17335004608332" outcome="Driver"/>
+  <links id="pf173350215199414" target="pf173350215199415" source="pf173350215199413" outcome="CreateRide.xhtml"/>
+  <links id="pf173350215199412" target="pf173350215199416" source="pf17335004608336" outcome="QueryRides.xhtml"/>
+  <links id="pf17339972944210" target="pf17339972944211" source="pf17321811734800" outcome="Bidaiak"/>
+  <links id="pf17339980133592" target="pf17339980133593" source="pf17339972944211" outcome="FindData"/>
+</pageflow:Pageflow>

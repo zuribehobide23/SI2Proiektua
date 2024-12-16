@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Log In</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:form>
+
+		<div class="container">
+			<h1>Log In</h1>
+			<table>
+				<tr>
+					<td><h:outputLabel for="username" value="Username:" /></td>
+					<td><h:inputText id="username"
+							value="#{loginBeanHibernate.username}" required="true">
+							<f:validateLength minimum="1" />
+							<f:ajax execute="username" render="usernameMessage" />
+						</h:inputText> <h:message id="usernameMessage" for="username"
+							style="color: red;" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="password" value="Password:" /></td>
+					<td><h:inputSecret id="password"
+							value="#{loginBeanHibernate.password}" required="true">
+							<f:validateLength minimum="1" />
+							<f:ajax execute="password" render="passwordMessage" />
+						</h:inputSecret> <h:message id="passwordMessage" for="password"
+							style="color: red;" /></td>
+				</tr>
+			</table>
+			<div class="button-container">
+
+				<h:commandButton value="Log In" action="#{loginBeanHibernate.login}"
+					class="button" />
+				<h:commandButton value="Close" action="#{loginBean.close}"
+					immediate="true" class="button" />
+			</div>
+			<h:messages style="color:blue" />
+
+		</div>
+	</h:form>
+
+</h:body>
+</html>

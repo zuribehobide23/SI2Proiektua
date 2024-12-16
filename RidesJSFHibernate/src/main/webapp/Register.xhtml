@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Register</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:form>
+
+		<div class="container">
+			<h1>Register</h1>
+			<table>
+				<tr>
+					<td><h:outputLabel for="username" value="Username:" /></td>
+					<td><h:inputText id="username"
+							value="#{registerBeanHibernate.username}" required="true">
+							<f:validateLength minimum="1" />
+							<f:ajax execute="username" render="usernameMessage" />
+						</h:inputText> <h:message id="usernameMessage" for="username"
+							style="color: red;" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="password" value="Password:" /></td>
+					<td><h:inputSecret id="password"
+							value="#{registerBeanHibernate.password}" required="true">
+							<f:validateLength minimum="1" />
+							<f:ajax execute="password" render="passwordMessage" />
+						</h:inputSecret> <h:message id="passwordMessage" for="password"
+							style="color: red;" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="mota" value="Mota:" /></td>
+					<td><h:selectOneMenu id="mota"
+							value="#{registerBeanHibernate.mota}" required="true">
+							<f:selectItem itemLabel="Select Mota" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Driver" itemValue="Driver" />
+							<f:selectItem itemLabel="Traveler" itemValue="Traveler" />
+							<f:ajax execute="mota" render="motaMessage" />
+						</h:selectOneMenu> <h:message id="motaMessage" for="mota" style="color: red;" /></td>
+				</tr>
+			</table>
+			<div class="button-container">
+
+				<h:commandButton value="Register"
+					action="#{registerBeanHibernate.register}" class="button" />
+				<h:commandButton value="Close"
+					action="#{registerBeanHibernate.close}" immediate="true"
+					class="button" />
+			</div>
+			<h:messages style="color:blue" />
+
+		</div>
+	</h:form>
+
+</h:body>
+</html>

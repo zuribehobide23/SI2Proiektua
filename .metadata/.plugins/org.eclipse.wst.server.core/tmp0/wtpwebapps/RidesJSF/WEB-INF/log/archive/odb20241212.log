@@ -1,0 +1,86 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-12 00:02:00 #1 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' has been recovered (tr. 30-31)
+
+[2024-12-12 00:02:00 #2 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' is opened by 16704@ZuriBehobide
+
+[2024-12-12 00:02:00 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-12-12 00:02:00 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-12 00:02:00 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-12 00:02:00 #6 type] 
+Type domain.Booking is not enhanced.
+
+[2024-12-12 00:02:00 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-12 00:15:58 #1 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' is opened by 16416@ZuriBehobide
+
+[2024-12-12 00:15:58 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-12-12 00:15:58 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-12 00:15:58 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-12 00:15:58 #5 type] 
+Type domain.Booking is not enhanced.
+
+[2024-12-12 00:15:58 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-12 00:18:14 #1 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' has been recovered (tr. 32-32)
+
+[2024-12-12 00:18:14 #2 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' is opened by 11156@ZuriBehobide
+
+[2024-12-12 00:18:14 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-12-12 00:18:14 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-12 00:18:14 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-12 00:18:14 #6 type] 
+Type domain.Booking is not enhanced.
+
+[2024-12-12 00:18:14 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-12-12 00:19:15 #1 store] 
+Database 'C:\Users\zurib\Desktop\src\main\resources\rides.temp' is opened by 3224@ZuriBehobide
+
+[2024-12-12 00:19:16 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-12-12 00:19:16 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-12-12 00:19:16 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-12-12 00:19:16 #5 type] 
+Type domain.Booking is not enhanced.
+
+[2024-12-12 00:19:16 #6 type] 
+Type domain.Traveler is not enhanced.
+
